@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      .form-signin {
+        width: 50%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+      }
+
+      .form-signin .checkbox {
+        font-weight: 400;
+      }
+
+      .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      .form-signin .form-control:focus {
+        z-index: 2;
+      }
+
+      .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    </style>
+
+    <title>ToWatch-List Movies</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    />
+
+    <script>
+      function registerAction() {
+        let name = $("#name").val();
+        let user = $("#user").val();
+        let password = $("#password").val();
+
+        $.ajax({
+          type: "POST",
+          url: "/register",
+          data: {
+            name_give: name,
+            user_give: user,
+            password_give: password,
+          },
+          success: function (response) {
+            $("#name").val("");
+            $("#user").val("");
+            $("#password").val("");
+
+            window.location.href = "{{ url_for('login') }}";
+          },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div
+        class="d-flex text-center flex-column bg-dark rounded p-5 widget-container bg-dark"
+      >
+        <h1 class="display-5 fw-normal text-warning">ToWatchList Movies</h1>
+        <p class="lead fs-5 fw-normal text-light">
+          The best way to remember all the movies you want to watch
+        </p>
+      </div>
+
+      <div class="card bg-light mt-5" style="max-width: 700px; margin: auto">
+        <div class="card-body">
+          <form class="form-signin" method="POST">
+            <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
+            <div class="form-group">
+              <label for="inputEmail" class="sr-only mb-2">Full Name</label>
+              <input
+                name="data[username]"
+                type="text"
+                id="name"
+                class="form-control"
+                placeholder="Full Name"
+                required
+                autofocus
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputEmail" class="sr-only mb-2">Username</label>
+              <input
+                name="data[username]"
+                type="text"
+                id="user"
+                class="form-control"
+                placeholder="Username"
+                required
+                autofocus
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword" class="sr-only mt-3">Password</label>
+              <input
+                name="data[password]"
+                type="password"
+                id="password"
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <button
+                  onclick="registerAction()"
+                  class="btn btn-lg btn-bock btn-success"
+                  type="button"
+                >
+                  <i class="bi bi-person-plus-fill"> </i> Register
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

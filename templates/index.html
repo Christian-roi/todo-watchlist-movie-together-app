@@ -251,10 +251,10 @@
 
   <body>
     <div class="bg-dark">
-      <div class="mytitle">
-        <button onclick="open_box()" type="button" class="btn btn-outline-light">Add Movie</button>
-        <h1>To do list Watch Movies Together</h1>
-        <button onclick="open_box()">Add movie</button>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger mt-2 float-end m-2">Log Out</a>
+        <div class="mytitle">
+          <h1 class="mt-2">To do list Watch Movies Together</h1>
+          <button onclick="open_box()" type="button" class="btn btn-outline-light">Add Movie</button>
       </div>
     <div class="mypost bg-white rounded" id="post-box">
       <div class="form-floating mb-3">

@@ -98,7 +98,7 @@ def cancel_bucket():
 def logincheck():
     if request.method == "POST":
 
-        user = db.user.find_one({'id': request.form['user']}, {'pw': request.form['password']})
+        user = db.user.find_one({'pw': request.form['password']})
 
         if user is not None:
             session['user'] = request.form['user']
@@ -125,6 +125,12 @@ def register():
             return jsonify({'result': 'fail', 'msg': 'fail'})
     else:
         return render_template('register.html')
-    
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
